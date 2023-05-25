@@ -1,0 +1,23 @@
+Una orden, es útil para paypal porque con esto le estamos diciendo estos son los productos que yo voy a comprar, el crea una especie de registro que dice ok el vendedor tiene tantos productos que va a cobrar aquí voy a generar una ventana y el usuario recibirá esa ventana.
+
+Capture order.- Cuando el usuario finalmente le da click al boton comprar pagar aceptar, cuando le enviamos el formulario el usuario aceptar pagar va a enviar el registro a paypal.
+
+En cuanto aceptar pagos nosotros vamos a tener que configurar, es buena idea tener un archvo de configuración donde este centralizado toda nuestras credenciales por que paypal para que nosotros podamos crear el tiene que identificar que nosotros somos un vendedor. => config.js
+
+PAYPAL SETUP.- 
+1) en https://developer.paypal.com/ debemos iniciar sesión primero.
+2) Luego nos vamos a dashboard / App & Credentials.
+3) Aquí debemos de crear una aplicación boton CreateApp, aquí se nos abre un formulario, lo llenamos y se crea una app de paypal que podemos usar en  nuestro proyecto.
+
+4)Esto nos genera 3 datos importantes como:
+  - El nombre de nuestra App.
+  - El ClientID, que es como paypal identifica nuestra app.
+  - El secret key.
+
+5) Lo mas recomandable es guardar estas claves en variables de entorno para esto podemos instalar el modulo dotenv, este modulo lee las variables de entorno.
+  - pnpm add dotenv -E
+  - Lo instanciamos donde la vayamos a usar en este caso en el archivo config.js
+    import { config } from 'dotenv'
+    config()
+
+6) En el archivo de configuracón debemos de crear nosotros una constante donde le tenemos que pasar la url de donde vamos ha hacer el pedido para paypal, nosotros tenemos dos url cuando desarrolllamos y nuestra app esta en producción. => https://developer.paypal.com/api/rest/authentication/ docs.
