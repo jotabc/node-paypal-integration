@@ -6,6 +6,7 @@ export const createOrder = async (req, res) => {
   const order = {
     intent: 'CAPTURE',
     purchase_units: [
+      // req.body para enviar los productos que enviamos mediante el body
       {
         amount: {
           currency_code: 'USD',
@@ -50,14 +51,21 @@ export const createOrder = async (req, res) => {
     }
   })
 
-  console.log(response.data)
-  return res.json('Capture order')
+  return res.json(response.data)
 }
 
-export const captureOrder = (req, res) => {
-  res.send('Capture order')
+export const captureOrder = async (req, res) => {
+  const { token } = req.query
+  const response = await axios.post(`${PAYPAL_API}/v2/checkout/orders/${token}/capture`, {}, {
+    auth: {
+      username: PAYPAL_API_CLIENT,
+      password: PAYPAL_API_SECRET
+    }
+  })
+  console.log(response)
+  return res.send('payed')
 }
 
 export const cancelPayment = (req, res) => {
-  res.send('Cancel payment')
+  res.rediect('/')
 }

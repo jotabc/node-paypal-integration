@@ -3,7 +3,7 @@ import { cancelPayment, captureOrder, createOrder } from '../controllers/payment
 
 const paymentRouter = express.Router()
 
-paymentRouter.get('/create-order', createOrder)
+paymentRouter.post('/create-order', createOrder)
 
 paymentRouter.get('/capture-order', captureOrder)
 
